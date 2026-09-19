@@ -15,7 +15,8 @@ Use MiniStore;
 SELECT * 
 FROM productos AS p
 LEFT JOIN ventas AS v
-ON p.producto_id = v.producto_id;
+ON p.producto_id = v.producto_id
+WHERE v.venta_id IS NULL;
 
 
 -- ── CONSULTA 2: RIGHT JOIN ────────────────
@@ -27,7 +28,8 @@ ON p.producto_id = v.producto_id;
 SELECT * 
 FROM productos AS p 
 RIGHT JOIN ventas AS v
-ON  p.producto_id = v.producto_id;
+ON  p.producto_id = v.producto_id
+WHERE p.producto_id IS NULL;
 
 
 -- ── CONSULTA 3: FULL OUTER JOIN ───────────
@@ -40,3 +42,18 @@ ON  p.producto_id = v.producto_id;
 SELECT * FROM productos AS p
 FULL OUTER JOIN ventas AS v
 ON p.producto_id = v.producto_id;
+
+
+SELECT 
+  *
+FROM productos p
+LEFT JOIN ventas v 
+    ON p.producto_id = v.producto_id
+
+UNION
+
+SELECT 
+   *
+FROM productos p
+RIGHT JOIN ventas v 
+    ON p.producto_id = v.producto_id;
